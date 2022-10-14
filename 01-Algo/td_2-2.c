@@ -11,7 +11,7 @@ int main() {
     scanf("%d", &tailleMax);
 
     int keepon=1, tempEntry, a=0;
-    while(keepon) {
+    while(keepon==1) {
         scanf("%d", &tempEntry);
         if(tempEntry > 0) {
             objs[a++] = tempEntry;
