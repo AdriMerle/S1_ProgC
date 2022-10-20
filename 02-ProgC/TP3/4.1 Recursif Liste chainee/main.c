@@ -55,14 +55,88 @@ void ajouter_en_queue() {
     e->next = new;
 }
 
+void supprimer() {
+    elem *e = list;
+    elem *nextElem;
+    int val;
+    scanf("%d", &val);
+
+    while(e->next != NULL) {
+        nextElem = e->next;
+        if(nextElem->val == val) {
+            printf("%d ", nextElem->val);
+            e->next = nextElem->next;
+            free(nextElem);
+        }
+        e = e->next;
+    }
+}
+
+void dupliquer() {
+    elem *e = list, *new;
+    int input;
+
+    scanf("%d", &input);
+
+    while(e->next != NULL) {
+        if(e->val == input) {
+            new = malloc(sizeof(elem));
+            new->next = e->next;
+            new->val = input;
+            e->next = new;
+            e = new->next;
+        } else {
+            e = e->next;
+        }
+        
+    }
+    afficher();
+}
+
+int est_triee() {
+    int trie = 1;   // Si la liste est triée, trie=1
+    elem *e = list;
+    while(e->next != NULL) {
+        if(e->next->val < e->val) trie=0;
+        e = e->next;
+    }
+
+    if(trie==0) printf("non\r\n");
+    else        printf("oui\r\n");
+    
+    return trie;
+}
+
+void ajouter_en_place() {
+    printf("La liste est-elle triée : ");
+    if (est_triee()==1) {
+        elem *e = list;
+        int input;
+        scanf("%d", &input);
+
+        while(e->next!=NULL && e->next->val<input)  e = e->next;
+
+        elem *new = malloc(sizeof(elem));
+        new->next=e->next;
+        new->val = input;
+        e->next = new;
+    } else printf("On ne peut donc pas insérer.\r\n");
+    printf("\r\n");
+}
+
+
 int main(void) {
     while(1) {
         printf("menu:\n");
+        printf("\t0: quitter\n");
         printf("\t1: ajouter en tete\n");
         printf("\t2: afficher la liste\n");
         printf("\t3: rechercher\n");
         printf("\t4: ajouter en queue\n");
-        printf("\t0: quitter\n");
+        printf("\t5: supprimer\n");
+        printf("\t6: dupliquer\n");
+        printf("\t7: la liste est-elle triée ?\n");
+        printf("\t8: ajouter en place\n");
 
         int choix;
         scanf("%d", &choix);
@@ -80,6 +154,18 @@ int main(void) {
                 break;
             case 4:
                 ajouter_en_queue();
+                break;
+            case 5:
+                supprimer();
+                break;
+            case 6:
+                dupliquer();
+                break;
+            case 7:
+                est_triee();
+                break;
+            case 8:
+                ajouter_en_place();
                 break;
             default:
                 printf("choix incorrect\n");
