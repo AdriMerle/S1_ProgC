@@ -9,7 +9,7 @@ int sac(int tab[MAX_OBJ][MAX_CAPACITE], int obj[], int i_size, int j_obj) {
             return 1;
         } else if (sac(tab, obj, i_size, j_obj-1)==1) {
             return 1;
-        } else if (sac(tab, obj, i_size-obj[j_obj], j_obj-1)) {
+        } else if (sac(tab, obj, i_size-obj[j_obj], j_obj-1)==1) {
             return 1;
         } else {
             return 0;

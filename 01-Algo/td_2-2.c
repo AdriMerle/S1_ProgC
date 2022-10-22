@@ -4,32 +4,28 @@
 #define MAXOBJ 100
 
 int main() {
-    int objs[MAXOBJ], j, nb_obj;
-    int tab[MAXSIZE], i, tailleMax;
+    int objs[MAXOBJ], j, nb_obj=0;
+    int tab[MAXSIZE], i, tailleMax, input;
 
     // Reading stuff
     scanf("%d", &tailleMax);
+    scanf("%d", &input);
 
-    int keepon=1, tempEntry, a=0;
-    while(keepon==1) {
-        scanf("%d", &tempEntry);
-        if(tempEntry > 0) {
-            objs[a++] = tempEntry;
-        } else {
-            nb_obj = a;
-            keepon = 0;
-        }
+    while(input!=-1 && nb_obj<MAXOBJ) {
+        objs[nb_obj++] = input;
+        scanf("%d", &input);
     }
 
+    /*
     // Print 
     printf("Size max = %d \r\nObjs : ", tailleMax);
     for(int a=0; a<nb_obj; a++) {
         printf("%d ", objs[a]);
     }
     printf("\r\n");
+    */
 
     tab[0] = 1;
-    
 
     // i = taille du sac
     // j = indice de l'objet
@@ -56,7 +52,7 @@ int main() {
 
     */
 
-    if(tab[tailleMax]==1)   printf("OUI");
-    else                    printf("NON");
+    if(tab[tailleMax]==1)   printf("OUI\r\n");
+    else                    printf("NON\r\n");
     return 0;
 }
