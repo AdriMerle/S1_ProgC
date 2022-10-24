@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 /*
 fgets stops to read if
@@ -10,34 +11,50 @@ fgets stops to read if
 */
 
 int get_nb_lines(FILE * stream);
-void print_random();
+
 
 int main() {
     srandom(time(NULL));
 
-    FILE *stream = fopen("colonne1.txt", "r");
+    FILE *out = fopen("discours.txt", "w+");
+    FILE *stream;
 
-    //iterate over the 4 files (not done yet)
-    int nb_lines = get_nb_lines(stream);
-    fclose(stream);
+    char * string;
+    int nb_lines, count;
+    long rand;
 
-    stream = fopen("colonne1.txt", "r");
-    long rand = random()%nb_lines;
-    int count = 0;
-    char chr = getc(stream);
+    char res[100], chr;
 
-    while(count != rand) {
-        if (chr == '\n') count++;
+    for(int i=1; i<=4; i++) {
+        if      (i==1)  string = "colonne1.txt";
+        else if (i==2)  string = "colonne2.txt";
+        else if (i==3)  string = "colonne3.txt";
+        else            string = "colonne4.txt";
+        
+        // Get number of lines
+        stream = fopen(string, "r");
+        nb_lines = get_nb_lines(stream);
+        fclose(stream);
+
+        // Get a random line
+        rand = random()%nb_lines;
+        count = 0;
+        stream = fopen(string, "r");
         chr = getc(stream);
+
+        while(count != rand) {
+            if (chr == '\n') count++;
+            chr = getc(stream);
+        }
+        fseek(stream, -1, SEEK_CUR); // Backwards of 1 char
+        
+        // Get the line wanted and output it to file
+        fgets(res, 100, stream);
+        fputs(res, out);
+        fclose(stream);
     }
-    char res[100];
-    fgets(res, 100, stream);
-    printf(res);
+    fclose(out);
     return 0;
-}
-
-void print_random_line() {
-
 }
 
 int get_nb_lines(FILE * stream) {
