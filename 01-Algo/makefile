@@ -1,11 +1,11 @@
+all: td
+	./td
+
 td: td.o
-	gcc -o td td.o;
+	gcc -o td td.o
 
-td.o: td_2-3.c;
-	gcc -o td.o -c td_2-3.c;
+td.o: td_5_liste.c
+	gcc -o td.o -c td_5_liste.c
 
-t1: td
-	echo 10 7 | ./td
-
-t2: td
-	echo 20 6 | ./td
+debug: td_5_liste.c
+	gcc -o td -g td_5_liste.c
