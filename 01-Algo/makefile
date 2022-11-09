@@ -4,8 +4,8 @@ all: td
 td: td.o
 	gcc -o td td.o
 
-td.o: td_5_liste.c
-	gcc -o td.o -c td_5_liste.c
+td.o: td_6.c
+	gcc -o td.o -c td_6.c
 
-debug: td_5_liste.c
-	gcc -o td -g td_5_liste.c
+debug: td_6.c
+	gcc -o td -g td_6.c
