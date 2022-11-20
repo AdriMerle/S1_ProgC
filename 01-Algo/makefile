@@ -4,8 +4,8 @@ all: td
 td: td.o
 	gcc -o td td.o
 
-td.o: td_6.c
-	gcc -o td.o -c td_6.c
+td.o: ex_sacados_2.c
+	gcc -o td.o -c ex_sacados_2.c
 
-debug: td_6.c
-	gcc -o td -g td_6.c
+debug: ex_sacados_2.c
+	gcc -o td -g ex_sacados_2.c

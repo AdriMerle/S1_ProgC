@@ -19,9 +19,7 @@ int main() {
     /*
     // Print 
     printf("Size max = %d \r\nObjs : ", tailleMax);
-    for(int a=0; a<nb_obj; a++) {
-        printf("%d ", objs[a]);
-    }
+    for(int a=0; a<nb_obj; a++) printf("%d ", objs[a]);
     printf("\r\n");
     */
 
